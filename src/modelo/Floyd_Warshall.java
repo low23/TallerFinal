@@ -110,7 +110,7 @@ public class Floyd_Warshall {
         Vertex b = new Vertex("Bogota");
         Vertex c = new Vertex("Manizales");
         Vertex d = new Vertex("Medellin");
-        Vertex e = new Vertex("Pereira");
+        Vertex e = new Vertex("Pereira"); 
 
         myGraph.addEdge(a, b, 6);
         myGraph.addEdge(b, c, 3);
