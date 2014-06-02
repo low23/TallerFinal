@@ -9,7 +9,6 @@ import control.IEdge;
 import control.IVertex;
 import java.util.ArrayList;
 
-
 /**
  *
  * @author Torres
@@ -29,6 +28,19 @@ public class Dijkstra {
 
     public Integer[][] getMatrizAdyacencia() {
         return matrizPesos;
+    }
+
+    public void DijkstraParaTodos(Graph grafo) {
+
+        ArrayList<IVertex> vertices = new ArrayList<>(grafo.getVertices());
+
+        if (vertices.size() > 0) {
+
+            for (IVertex vertice : vertices) {
+
+                algoritmoDijkstra(grafo, vertice);
+            }
+        }
     }
 
     public Integer[][] generarMatrizAdyacencia(Graph grafo) {
@@ -100,35 +112,38 @@ public class Dijkstra {
         caminos[a][a] = vertices.get(a).getLabel();
         ArrayList<IVertex> S = new ArrayList<>(vertices.size());
 
-        while (S != vertices) {
+        while (S.size() != vertices.size()) {
 
             int u = 0;
+            int menor = Integer.MAX_VALUE;
             for (int i = 0; i < vertices.size(); i++) {
-                int menor = Integer.MAX_VALUE;
-                if (menor > matrizPesos[a][i] && !S.contains(vertices.get(i))){
+                if (!S.contains(vertices.get(i)) && menor > matrizPesos[a][i]) {
                     menor = matrizPesos[a][i];
                     u = i;
                 }
             }
             S.add(vertices.get(u));
-            for (int j = 0; !S.contains(vertices.get(j)); j++) {
-                int v = vertices.indexOf(vertices.get(j));
-                
-                IEdge w = new Edge(new Vertex(""), new Vertex(""), Integer.MAX_VALUE);
-                
-                for (IEdge aristActual : edges) {
-                    if(aristActual.getInitialVertex() == vertices.get(u) && 
-                            aristActual.getTerminalVertex() == vertices.get(v)){
-                        w = aristActual;
+            for (int v = 0; v < vertices.size(); v++) {
+//                int v = j;
+                if (!S.contains(vertices.get(v))) {
+                    IEdge w = new Edge(new Vertex(""), new Vertex(""), Integer.MAX_VALUE);
+
+                    for (IEdge aristActual : edges) {
+                        if (aristActual.getInitialVertex() == vertices.get(u)
+                                && aristActual.getTerminalVertex() == vertices.get(v)
+                                || aristActual.getInitialVertex() == vertices.get(v)
+                                && aristActual.getTerminalVertex() == vertices.get(u)) {
+                            w = aristActual;
+                        }
+                    }
+
+                    if (matrizPesos[a][u] + w.getWeight() < matrizPesos[a][v]) {
+
+                        matrizPesos[a][v] = (int) (matrizPesos[a][u] + w.getWeight());
+                        caminos[a][v] = caminos[a][u] + " _ " + vertices.get(v).getLabel();
                     }
                 }
-                
-                if (matrizPesos[a][u] + w.getWeight() < matrizPesos[a][v]) {
-
-                    matrizPesos[a][v] = (int)(matrizPesos[a][u] + w.getWeight());
-                    caminos[a][v] = caminos[a][u] + " " + vertices.get(j).getLabel();
-                }
-            }            
+            }
         }
     }
 
@@ -184,9 +199,23 @@ public class Dijkstra {
             }
             System.out.println("");
         }
-        
-        app.algoritmoDijkstra(myGraph, d);
-                
+        System.out.println("Pokemon!");
+//        System.out.println("Hola");
+//        app.algoritmoDijkstra(myGraph, a);
+//        app.algoritmoDijkstra(myGraph, b);
+//        app.algoritmoDijkstra(myGraph, c);
+//        app.algoritmoDijkstra(myGraph, d);
+        app.DijkstraParaTodos(myGraph);
+
+//        app.algoritmoDijkstra(myGraph, a);
+//        app.algoritmoDijkstra(myGraph, b);
+//        app.algoritmoDijkstra(myGraph, c);
+//        app.algoritmoDijkstra(myGraph, d);
+//        app.algoritmoDijkstra(myGraph, e);
+//        app.algoritmoDijkstra(myGraph, f);
+//        app.algoritmoDijkstra(myGraph, g);
+        System.out.println("Acabo:");
+
         for (int i = 0; i < app.matrizPesos.length; i++) {
             for (int j = 0; j < app.matrizPesos.length; j++) {
                 System.out.print(app.matrizPesos[i][j] + ", ");
@@ -201,5 +230,6 @@ public class Dijkstra {
             }
             System.out.println("");
         }
+
     }
 }
