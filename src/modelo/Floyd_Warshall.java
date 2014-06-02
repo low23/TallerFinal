@@ -33,7 +33,8 @@ public class Floyd_Warshall {
                     MatrizAdyacencia[i][j] = 0;
                 }
                 if (MatrizAdyacencia[i][j] == null) {
-                    MatrizAdyacencia[i][j] = 99;//Integer.MAX_VALUE;
+//                    MatrizAdyacencia[i][j] = Integer.MAX_VALUE/2;
+                    MatrizAdyacencia[i][j] = 9999;
                 }
             }
         }
@@ -51,8 +52,8 @@ public class Floyd_Warshall {
             int i = vertices.indexOf(arista.getInitialVertex());
             int j = vertices.indexOf(arista.getTerminalVertex());
             //Por Strings
-            MatrizRutas[i][j] = vertices.get(i).getLabel() + "<->" + vertices.get(j).getLabel();
-            MatrizRutas[j][i] = vertices.get(i).getLabel() + "<->" + vertices.get(j).getLabel();
+            MatrizRutas[i][j] = vertices.get(i).getLabel() + "-" + vertices.get(j).getLabel();
+            MatrizRutas[j][i] = vertices.get(i).getLabel() + "-" + vertices.get(j).getLabel();
 
 //                    Por aristas            
 //            MatrizRutas[vertices.indexOf(arista.getTerminalVertex())]
@@ -73,20 +74,14 @@ public class Floyd_Warshall {
         return MatrizRutas;
     }
 
-    public Integer[][] algoritmoFloydWarshall(Integer[][] adyacencia, String[][] Caminos) {
+    public void algoritmoFloydWarshall(Integer[][] MatrizPesos, String[][] Caminos) {
 //    public void algoritmoFloydWarshall(Integer[][] adyacencia, String[][] Caminos) {
-
-        Integer[][] MatrizPesos = adyacencia;
 
         for (int i = 0; i < MatrizPesos.length ; i++) {
             for (int j = 0; j < MatrizPesos.length ; j++) {
                 for (int k = 0; k < MatrizPesos.length ; k++) {
-//                    if (MatrizPesos[j][i] + MatrizPesos[i][k] < MatrizPesos[i][k]) {
-//                        MatrizPesos[i][k] = MatrizPesos[j][i] + MatrizPesos[i][k];
-//                        Caminos[j][k] = Caminos[j][i] + "<->" + Caminos[j][k];
-//                    }
                     int suma = MatrizPesos[i][k] + MatrizPesos[j][i];
-                    String ruta = Caminos[i][k] + " ▓ " + Caminos[j][i];
+                    String ruta = Caminos[i][k] + "_" + Caminos[j][i];
                     if(MatrizPesos[j][k] > suma){
                         MatrizPesos[j][k] = suma;
                         MatrizPesos[k][j] = suma;
@@ -99,7 +94,6 @@ public class Floyd_Warshall {
 
         }
 
-        return MatrizPesos;
     }
 
     public static void main(String args[]) {
@@ -155,7 +149,7 @@ public class Floyd_Warshall {
             System.out.println("");
         }
         
-        ab = app.algoritmoFloydWarshall(ab, bc);
+        app.algoritmoFloydWarshall(ab, bc);
         
        
         for (int i = 0; i < ab.length; i++) {
