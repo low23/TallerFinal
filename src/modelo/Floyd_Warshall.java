@@ -54,7 +54,6 @@ public class Floyd_Warshall {
             //Por Strings
             MatrizRutas[i][j] = vertices.get(i).getLabel() + "-" + vertices.get(j).getLabel();
             MatrizRutas[j][i] = vertices.get(i).getLabel() + "-" + vertices.get(j).getLabel();
-
 //                    Por aristas            
 //            MatrizRutas[vertices.indexOf(arista.getTerminalVertex())]
 //                    [vertices.indexOf(arista.getInitialVertex())] = 
@@ -81,6 +80,7 @@ public class Floyd_Warshall {
             for (int j = 0; j < MatrizPesos.length ; j++) {
                 for (int k = 0; k < MatrizPesos.length ; k++) {
                     int suma = MatrizPesos[i][k] + MatrizPesos[j][i];
+//                    String ruta = Caminos[j][i] + "_" + Caminos[i][k];
                     String ruta = Caminos[i][k] + "_" + Caminos[j][i];
                     if(MatrizPesos[j][k] > suma){
                         MatrizPesos[j][k] = suma;
@@ -100,37 +100,37 @@ public class Floyd_Warshall {
         Floyd_Warshall app = new Floyd_Warshall();
         Graph myGraph = new Graph(false, true);
 //      Grafo grande de prueba
-        Vertex a = new Vertex("Cali");
-        Vertex b = new Vertex("Bogota");
-        Vertex c = new Vertex("Manizales");
-        Vertex d = new Vertex("Medellin");
-        Vertex e = new Vertex("Pereira"); 
-
-        myGraph.addEdge(a, b, 6);
-        myGraph.addEdge(b, c, 3);
-        myGraph.addEdge(c, d, 2);
-        myGraph.addEdge(d, b, 4);
-
-//        myGraph.addVertex(e);
-//        JFrame gw = CLDGraph.draw(myGraph);
-//        JOptionPane.showMessageDialog(null, "Ahora agregaremos mas aristas y nodos.");
-        Vertex f = new Vertex("Barranquilla");
-        Vertex g = new Vertex("Cartagena");
-
-        myGraph.addEdge(f, e, 9);
-        myGraph.addEdge(g, a, 11);
-        myGraph.addEdge(e, c, 1);
-        myGraph.addEdge(g, d, 6);
-        myGraph.addEdge(a, e, 3);
-//        //Grafo pequeño de prueba
 //        Vertex a = new Vertex("Cali");
 //        Vertex b = new Vertex("Bogota");
 //        Vertex c = new Vertex("Manizales");
 //        Vertex d = new Vertex("Medellin");
-//        
+//        Vertex e = new Vertex("Pereira"); 
+//
 //        myGraph.addEdge(a, b, 6);
 //        myGraph.addEdge(b, c, 3);
-//        myGraph.addEdge(a, d, 7);
+//        myGraph.addEdge(c, d, 2);
+//        myGraph.addEdge(d, b, 4);
+//
+////        myGraph.addVertex(e);
+////        JFrame gw = CLDGraph.draw(myGraph);
+////        JOptionPane.showMessageDialog(null, "Ahora agregaremos mas aristas y nodos.");
+//        Vertex f = new Vertex("Barranquilla");
+//        Vertex g = new Vertex("Cartagena");
+//
+//        myGraph.addEdge(f, e, 9);
+//        myGraph.addEdge(g, a, 11);
+//        myGraph.addEdge(e, c, 1);
+//        myGraph.addEdge(g, d, 6);
+//        myGraph.addEdge(a, e, 3);
+        //Grafo pequeño de prueba
+        Vertex a = new Vertex("Cali");
+        Vertex b = new Vertex("Bogota");
+        Vertex c = new Vertex("Manizales");
+        Vertex d = new Vertex("Medellin");
+        
+        myGraph.addEdge(a, b, 6);
+        myGraph.addEdge(b, c, 3);
+        myGraph.addEdge(a, d, 7);
 
         Integer[][] ab = app.generarMatrizAdyacencia(myGraph);
         String[][] bc = app.GenerarMatrizCaminos(myGraph);
