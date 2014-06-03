@@ -80,11 +80,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Grafo 4"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="grafo4ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="grafo5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Grafo 5"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="grafo5ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="grafo1">
       <Properties>
@@ -101,11 +107,17 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Grafo2"/>
       </AccessibilityProperties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="grafo2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="grafo3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Grafo 3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="grafo3ActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
