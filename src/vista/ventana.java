@@ -20,6 +20,7 @@ public class ventana extends javax.swing.JFrame {
     control.HiloDijkstra dijkstraGo;
     control.HiloFloydWarshall floydGo;
     modelo.retornarGrafos grafoD = new retornarGrafos();
+    modelo.retornarGrafos grafoD1 = new retornarGrafos();
     /**
      * Creates new form ventana
      */
@@ -139,12 +140,13 @@ public class ventana extends javax.swing.JFrame {
 
     private void grafo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafo1ActionPerformed
         // TODO add your handling code here:
-        dijkstraGo = new HiloDijkstra(new retornarGrafos().obtenerGrafo1());
-        floydGo = new HiloFloydWarshall(new retornarGrafos().obtenerGrafo1());
+        dijkstraGo = new HiloDijkstra(grafoD.obtenerGrafo1());
+        floydGo = new HiloFloydWarshall(grafoD1.obtenerGrafo2());
         dijkstraGo.start();
         floydGo.start();
         espDijkstra.setText(dijkstraGo.getReporte());
         espFloyd.setText(floydGo.getReporte());
+        System.out.println("afadsf:   "  + floydGo.getReporte());
         espDijkstra.setText("re troll");
     }//GEN-LAST:event_grafo1ActionPerformed
 

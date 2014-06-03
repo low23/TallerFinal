@@ -17,7 +17,7 @@ public class HiloFloydWarshall extends Thread {
     }
 
     public void run() {
-        this.reporte = floyd.reporte(grafo);
+        this.reporte += floyd.reporte(grafo);
     }
 
     public String getReporte() {

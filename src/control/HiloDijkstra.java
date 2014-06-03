@@ -13,15 +13,16 @@ import modelo.Graph;
  */
 public class HiloDijkstra extends Thread{
     private Dijkstra dijks = new Dijkstra();
-    private Graph grafo = new Graph();
-    private String reporte = ".";
+    private Graph grafo = new Graph();;
+    private String reporte = "";
     
-    public HiloDijkstra(Graph gafo) {
+    public HiloDijkstra(Graph grafo) {
+        
         this.grafo = grafo;
     }
     
     public void run() {
-        this.reporte = dijks.reporte(grafo);
+        this.reporte += dijks.reporte(grafo);
         System.out.println(grafo.getVertices());
         System.out.println("hola");
         System.out.println(reporte);
