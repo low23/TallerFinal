@@ -8,6 +8,7 @@ package modelo;
 import control.IEdge;
 import control.IVertex;
 import java.util.ArrayList;
+import modelo.retornarGrafos;
 
 /**
  *
@@ -17,6 +18,8 @@ public class Dijkstra {
 
     public String[][] caminos;
     public Integer[][] matrizPesos;
+    private Long tiempoDijk;
+    private int aux = 1;
 
 //    public Dijkstra(Graph grafo) {
 //        this.caminos = GenerarMatrizCaminos(grafo);
@@ -31,6 +34,7 @@ public class Dijkstra {
     }
 
     public void DijkstraParaTodos(Graph grafo) {
+        
 
         ArrayList<IVertex> vertices = new ArrayList<>(grafo.getVertices());
 
@@ -41,6 +45,7 @@ public class Dijkstra {
                 algoritmoDijkstra(grafo, vertice);
             }
         }
+        
     }
 
     public Integer[][] generarMatrizAdyacencia(Graph grafo) {
@@ -146,66 +151,121 @@ public class Dijkstra {
             }
         }
     }
+    
+    public String reporte(Graph a){
+        //System.out.println("no estoy aca: " + a.getVertices().iterator().next().getLabel());
+        matrizPesos = generarMatrizAdyacencia(a);
+        caminos = GenerarMatrizCaminos(a);
+        String acum = "Dijkstra:\n\n";
+        Long temp = System.currentTimeMillis();
+        DijkstraParaTodos(a);
+        tiempoDijk = (System.currentTimeMillis() - temp);
+        for (int i = 0; i < caminos.length; i++) {
+            for (int j = 1 + i; j < caminos[i].length; j++) {
+               j += i;
+               if(j < caminos[i].length){
+               acum += caminos[i][i] + " - " + caminos[j][j] 
+                       + " [" + caminos[i][j] + "] \t" 
+                       + "Costo: " + matrizPesos[i][j] + "\n" ; 
+               }
+               
+            }
+        } 
+        acum += "\nTiempo de evaluacion de las rutas: " + tiempoDijk + " milisegundos";
+        return acum;
+    }
 
     public static void main(String args[]) {
         Dijkstra app = new Dijkstra();
         Graph myGraph = new Graph(false, true);
 //      Grafo grande de prueba
-//        Vertex a = new Vertex("Cali");
-//        Vertex b = new Vertex("Bogota");
-//        Vertex c = new Vertex("Manizales");
-//        Vertex d = new Vertex("Medellin");
+        Vertex a = new Vertex("Cali");
+        Vertex b = new Vertex("Bogota");
+        Vertex c = new Vertex("Manizales");
+        Vertex d = new Vertex("Medellin");
 //        Vertex e = new Vertex("Pereira"); 
-//
-//        myGraph.addEdge(a, b, 6);
-//        myGraph.addEdge(b, c, 3);
-//        myGraph.addEdge(c, d, 2);
-//        myGraph.addEdge(d, b, 4);
-//
-////        myGraph.addVertex(e);
-////        JFrame gw = CLDGraph.draw(myGraph);
-////        JOptionPane.showMessageDialog(null, "Ahora agregaremos mas aristas y nodos.");
 //        Vertex f = new Vertex("Barranquilla");
 //        Vertex g = new Vertex("Cartagena");
-//
+//        Vertex h = new Vertex("Cali");
+//        Vertex m = new Vertex("Bogota");
+//        Vertex l = new Vertex("Manizales");
+//        Vertex k = new Vertex("Medellin");
+//        Vertex q = new Vertex("Cali");
+//        Vertex w = new Vertex("Bogota");
+//        Vertex r = new Vertex("Manizales");
+//        Vertex t = new Vertex("Medellin");
+//        Vertex y = new Vertex("Pereira"); 
+//        Vertex u = new Vertex("Barranquilla");
+//        Vertex o = new Vertex("Cartagena");
+//        Vertex p = new Vertex("Cali");
+//        Vertex s = new Vertex("Bogota");
+//        Vertex z = new Vertex("Manizales");
+//        Vertex x = new Vertex("Medellin");
+        
+        myGraph.addEdge(a, b, 6);
+        myGraph.addEdge(b, c, 3);
+        myGraph.addEdge(c, d, 2);
+        myGraph.addEdge(d, b, 4);
 //        myGraph.addEdge(f, e, 9);
 //        myGraph.addEdge(g, a, 11);
 //        myGraph.addEdge(e, c, 1);
 //        myGraph.addEdge(g, d, 6);
 //        myGraph.addEdge(a, e, 3);
-//        //Grafo pequeño de prueba
-        Vertex a = new Vertex("Cali");
-        Vertex b = new Vertex("Bogota");
-        Vertex c = new Vertex("Manizales");
-        Vertex d = new Vertex("Medellin");
+//        myGraph.addEdge(h, g, 6);
+//        myGraph.addEdge(m, h, 3);
+//        myGraph.addEdge(l, h, 7);
+//        myGraph.addEdge(k, l, 7);
+//        myGraph.addEdge(l, q, 6);
+//        myGraph.addEdge(q, w, 3);
+//        myGraph.addEdge(w, r, 2);
+//        myGraph.addEdge(r, t, 4);
+//        myGraph.addEdge(t, y, 9);
+//        myGraph.addEdge(y, u, 11);
+//        myGraph.addEdge(u, o, 1);
+//        myGraph.addEdge(o, p, 6);
+//        myGraph.addEdge(p, s, 3);
+//        myGraph.addEdge(s, z, 6);
+//        myGraph.addEdge(z, x, 3);
 
-        myGraph.addEdge(a, b, 6);
-        myGraph.addEdge(b, c, 3);
-        myGraph.addEdge(a, d, 7);
-
-        app.matrizPesos = app.generarMatrizAdyacencia(myGraph);
-        app.caminos = app.GenerarMatrizCaminos(myGraph);
-        for (int i = 0; i < app.matrizPesos.length; i++) {
-            for (int j = 0; j < app.matrizPesos.length; j++) {
-                System.out.print(app.matrizPesos[i][j] + ", ");
-            }
-            System.out.println("");
-        }
-        System.out.println();
-        System.out.println();
-        for (int i = 0; i < app.caminos.length; i++) {
-            for (int j = 0; j < app.caminos.length; j++) {
-                System.out.print(app.caminos[i][j] + "||");
-            }
-            System.out.println("");
-        }
-        System.out.println("Pokemon!");
+//        app.matrizPesos = app.generarMatrizAdyacencia(myGraph);
+//        app.caminos = app.GenerarMatrizCaminos(myGraph);
+        
+//        System.out.println("---------//----------");
+//        
+//        //System.out.println(app.reporte(myGraph));
+//        
+//        System.out.println("---------//----------");
+        
+        
+//        for (int i = 0; i < app.matrizPesos.length; i++) {
+//            for (int j = 0; j < app.matrizPesos.length; j++) {
+//                System.out.print(app.matrizPesos[i][j] + ", ");
+//            }
+//            System.out.println("");
+//        }
+//        System.out.println();
+//        System.out.println();
+//        for (int i = 0; i < app.caminos.length; i++) {
+//            for (int j = 0; j < app.caminos.length; j++) {
+//                System.out.print(app.caminos[i][j] + "||");
+//            }
+//            System.out.println("");
+//        }
+//        System.out.println("Pokemon!");
 //        System.out.println("Hola");
 //        app.algoritmoDijkstra(myGraph, a);
 //        app.algoritmoDijkstra(myGraph, b);
 //        app.algoritmoDijkstra(myGraph, c);
 //        app.algoritmoDijkstra(myGraph, d);
-        app.DijkstraParaTodos(myGraph);
+//        Long temp = System.currentTimeMillis();
+//        app.DijkstraParaTodos(myGraph);
+//        System.out.println("hi: " + (System.currentTimeMillis() - temp));
+
+        System.out.println("---------//----------");
+        
+        System.out.println(app.reporte(myGraph));
+        
+        System.out.println("---------//----------");
 
 //        app.algoritmoDijkstra(myGraph, a);
 //        app.algoritmoDijkstra(myGraph, b);
@@ -214,22 +274,21 @@ public class Dijkstra {
 //        app.algoritmoDijkstra(myGraph, e);
 //        app.algoritmoDijkstra(myGraph, f);
 //        app.algoritmoDijkstra(myGraph, g);
-        System.out.println("Acabo:");
+//        System.out.println("Acabo:");
 
-        for (int i = 0; i < app.matrizPesos.length; i++) {
-            for (int j = 0; j < app.matrizPesos.length; j++) {
-                System.out.print(app.matrizPesos[i][j] + ", ");
-            }
-            System.out.println("");
-        }
-        System.out.println();
-        System.out.println();
-        for (int i = 0; i < app.caminos.length; i++) {
-            for (int j = 0; j < app.caminos.length; j++) {
-                System.out.print(app.caminos[i][j] + "||");
-            }
-            System.out.println("");
-        }
-
+//        for (int i = 0; i < app.matrizPesos.length; i++) {
+//            for (int j = 0; j < app.matrizPesos.length; j++) {
+//                System.out.print(app.matrizPesos[i][j] + ", ");
+//            }
+//            System.out.println("");
+//        }
+//        System.out.println();
+//        System.out.println();
+//        for (int i = 0; i < app.caminos.length; i++) {
+//            for (int j = 0; j < app.caminos.length; j++) {
+//                System.out.print(app.caminos[i][j] + "||");
+//            }
+//            System.out.println("");
+//        }
     }
 }

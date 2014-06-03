@@ -12,43 +12,80 @@ package modelo;
 public class retornarGrafos {
 
     public Graph obtenerGrafo1() {
+        Graph myGraph = new Graph(false,true);
+        
+        Vertex a = new Vertex("Cali");
+        Vertex b = new Vertex("Bogota");
+        Vertex c = new Vertex("Manizales");
+        Vertex d = new Vertex("Medellin");
+        
+        myGraph.addEdge(a, b, 6);
+        myGraph.addEdge(b, c, 3);
+        myGraph.addEdge(c, d, 2);
+        myGraph.addEdge(d, b, 4);
+        return  myGraph;
+    }
+    
+    public Graph obtenerGrafo2() {
         
         Graph myGraph = new Graph(false,true);
         
-        Vertex a = new Vertex("a");
-        Vertex b = new Vertex("b");
-        Vertex c = new Vertex("c");
-        Vertex d = new Vertex("d");
-        Vertex e = new Vertex("e");
+       Vertex a = new Vertex("Cali");
+        Vertex b = new Vertex("Bogota");
+        Vertex c = new Vertex("Manizales");
+        Vertex d = new Vertex("Medellin");
+
+        myGraph.addEdge(a, b, 6);
+        myGraph.addEdge(b, c, 3);
+        myGraph.addEdge(a, d, 7);
         
-        myGraph.addEdge(a, b, 3);
-        myGraph.addEdge(b, c, 5);
-        myGraph.addEdge(c, d, 1);
-        myGraph.addEdge(d, b, 7);
+        return  myGraph;
+    }
+    
+    public Graph obtenerGrafo3() {
         
-        myGraph.addVertex(e);
+        Graph myGraph = new Graph(false,true);
         
-//        JFrame gw = CLDGraph.draw(myGraph);
-//        JOptionPane.showMessageDialog(null, "Ahora agregaremos mas aristas y nodos.");
+       Vertex a = new Vertex("Cali");
+        Vertex b = new Vertex("Bogota");
+        Vertex c = new Vertex("Manizales");
+        Vertex d = new Vertex("Medellin");
+
+        myGraph.addEdge(a, b, 6);
+        myGraph.addEdge(b, c, 3);
+        myGraph.addEdge(a, d, 7);
         
-        Vertex f = new Vertex("f");
-        Vertex g = new Vertex("g");
+        return  myGraph;
+    }
+    
+    public Graph obtenerGrafo4() {
         
-        myGraph.addEdge(f, c, 9);
-        myGraph.addEdge(g, a, 2);
+        Graph myGraph = new Graph(false,true);
         
-//        gw.revalidate();
-//        JOptionPane.showMessageDialog(null, "Y ahora algunos mas!");
+       Vertex a = new Vertex("Cali");
+        Vertex b = new Vertex("Bogota");
+        Vertex c = new Vertex("Manizales");
+        Vertex d = new Vertex("Medellin");
+
+        myGraph.addEdge(a, b, 6);
+        myGraph.addEdge(b, c, 3);
+        myGraph.addEdge(a, d, 7);
         
-        Vertex h = new Vertex("h");
-        Vertex i = new Vertex("i");
+        return  myGraph;
+    }
+    
+    public Graph obtenerGrafo5() {
         
-        myGraph.addVertex(h);
+        Graph myGraph = new Graph(false,true);
         
-        myGraph.addEdge(i, f, 6);
-        myGraph.addEdge(i, b, 4);
-        
-//        gw.revalidate();
+       Vertex a = new Vertex("Cali");
+        Vertex b = new Vertex("Bogota");
+        Vertex c = new Vertex("Manizales");
+        Vertex d = new Vertex("Medellin");
+
+        myGraph.addEdge(a, b, 6);
+        myGraph.addEdge(b, c, 3);
+        myGraph.addEdge(a, d, 7);
         
         return  myGraph;
     }

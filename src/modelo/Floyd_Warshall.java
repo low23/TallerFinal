@@ -15,6 +15,7 @@ import java.util.ArrayList;
  * @author Torres
  */
 public class Floyd_Warshall {
+    private Long tiempoFloyd;
 
     public Integer[][] generarMatrizAdyacencia(Graph grafo) {
 
@@ -95,6 +96,29 @@ public class Floyd_Warshall {
         }
 
     }
+    
+    public String reporte(Graph a){
+        String acum = "Floyd Warshall:\n\n";
+        Integer[][] ab = generarMatrizAdyacencia(a);
+        String[][] bc = GenerarMatrizCaminos(a);
+        Long temp = System.currentTimeMillis();
+        algoritmoFloydWarshall(ab, bc);
+        tiempoFloyd = (System.currentTimeMillis() - temp);
+        
+        for (int i = 0; i < bc.length; i++) {
+            for (int j = 1 + i; j < bc[i].length; j++) {
+               j += i;
+               if(j < bc[i].length){
+               acum += bc[i][i] + " - " + bc[j][j] 
+                       + " [" + bc[i][j] + "] \t" 
+                       + "Costo: " + ab[i][j] + "\n" ; 
+               }
+               
+            }
+        } 
+        acum += "\nTiempo de evaluacion de las rutas: " + tiempoFloyd + " milisegundos";
+        return acum;
+    }
 
     public static void main(String args[]) {
         Floyd_Warshall app = new Floyd_Warshall();
@@ -132,39 +156,45 @@ public class Floyd_Warshall {
         myGraph.addEdge(b, c, 3);
         myGraph.addEdge(a, d, 7);
 
-        Integer[][] ab = app.generarMatrizAdyacencia(myGraph);
-        String[][] bc = app.GenerarMatrizCaminos(myGraph);
-        for (int i = 0; i < ab.length; i++) {
-            for (int j = 0; j < ab.length; j++) {
-                System.out.print(ab[i][j] + ", ");
-            }
-            System.out.println("");
-        }
-        System.out.println();
-        System.out.println();
-        for (int i = 0; i < bc.length; i++) {
-            for (int j = 0; j < bc.length; j++) {
-                System.out.print(bc[i][j] + "||");
-            }
-            System.out.println("");
-        }
+//        Integer[][] ab = app.generarMatrizAdyacencia(myGraph);
+//        String[][] bc = app.GenerarMatrizCaminos(myGraph);
+//        for (int i = 0; i < ab.length; i++) {
+//            for (int j = 0; j < ab.length; j++) {
+//                System.out.print(ab[i][j] + ", ");
+//            }
+//            System.out.println("");
+//        }
+//        System.out.println();
+//        System.out.println();
+//        for (int i = 0; i < bc.length; i++) {
+//            for (int j = 0; j < bc.length; j++) {
+//                System.out.print(bc[i][j] + "||");
+//            }
+//            System.out.println("");
+//        }
         
-        app.algoritmoFloydWarshall(ab, bc);
+//        app.algoritmoFloydWarshall(ab, bc);
         
        
-        for (int i = 0; i < ab.length; i++) {
-            for (int j = 0; j < ab.length; j++) {
-                System.out.print(ab[i][j] + ", ");
-            }
-            System.out.println("");
-        }
-        System.out.println();
-        System.out.println();
-        for (int i = 0; i < bc.length; i++) {
-            for (int j = 0; j < bc.length; j++) {
-                System.out.print(bc[i][j] + "||");
-            }
-            System.out.println("");
-        }
+//        for (int i = 0; i < ab.length; i++) {
+//            for (int j = 0; j < ab.length; j++) {
+//                System.out.print(ab[i][j] + ", ");
+//            }
+//            System.out.println("");
+//        }
+//        System.out.println();
+//        System.out.println();
+//        for (int i = 0; i < bc.length; i++) {
+//            for (int j = 0; j < bc.length; j++) {
+//                System.out.print(bc[i][j] + "||");
+//            }
+//            System.out.println("");
+//        }
+        
+         System.out.println("---------//----------");
+        
+        System.out.println(app.reporte(myGraph));
+        
+        System.out.println("---------//----------");
     }
 }

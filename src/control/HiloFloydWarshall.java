@@ -8,17 +8,22 @@ import modelo.Floyd_Warshall;
  */
 public class HiloFloydWarshall extends Thread {
 
-    private Floyd_Warshall floyd;
-    private Graph grafo;
+    private Floyd_Warshall floyd = new Floyd_Warshall();
+    private Graph grafo = new Graph();
+    private String reporte = "";
 
     public HiloFloydWarshall(Graph gafo) {
         this.grafo = grafo;
     }
 
     public void run() {
-        String[][] caminos = floyd.GenerarMatrizCaminos(grafo);
-        Integer[][] adyacencia = floyd.generarMatrizAdyacencia(grafo);
-        floyd.algoritmoFloydWarshall(adyacencia, caminos);
-        System.out.println("");
+        this.reporte = floyd.reporte(grafo);
     }
+
+    public String getReporte() {
+        return reporte;
+    }
+
+    
+    
 }
