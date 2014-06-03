@@ -39,11 +39,15 @@ public class ventana extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     
-//    private void reporFinal(){
-//        if (t) {
-//            
-//        }
-//    }
+    private String reporFinal(){
+        if (tD < tF) {
+            return "El algoritmo de Dijkstra a probado ser mas rapido para este grafo.";
+        }else if(tD > tF){
+            return "El algoritmo de Floyd-Warshall a probado ser mas rapido para este grafo.";
+        }else {
+            return "Los resultados son muy cercanos o iguales.";
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -177,7 +181,7 @@ public class ventana extends javax.swing.JFrame {
         espDijkstra.setText(reporDis);
         System.out.println(dijkstraGo.getReporte());
         espFloyd.setText(reporFloyd);
-        
+        resultado.setText(reporFinal());
     }//GEN-LAST:event_grafo1ActionPerformed
 
     private void grafo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafo2ActionPerformed
@@ -189,6 +193,7 @@ public class ventana extends javax.swing.JFrame {
         espDijkstra.setText(reporDis);
         System.out.println(dijkstraGo.getReporte());
         espFloyd.setText(reporFloyd);
+        resultado.setText(reporFinal());
     }//GEN-LAST:event_grafo2ActionPerformed
 
     private void grafo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafo3ActionPerformed
@@ -200,6 +205,7 @@ public class ventana extends javax.swing.JFrame {
         espDijkstra.setText(reporDis);
         System.out.println(dijkstraGo.getReporte());
         espFloyd.setText(reporFloyd);
+        resultado.setText(reporFinal());
     }//GEN-LAST:event_grafo3ActionPerformed
 
     private void grafo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafo4ActionPerformed
@@ -211,6 +217,7 @@ public class ventana extends javax.swing.JFrame {
         espDijkstra.setText(reporDis);
         System.out.println(dijkstraGo.getReporte());
         espFloyd.setText(reporFloyd);
+        resultado.setText(reporFinal());
     }//GEN-LAST:event_grafo4ActionPerformed
 
     private void grafo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafo5ActionPerformed
@@ -222,6 +229,7 @@ public class ventana extends javax.swing.JFrame {
         espDijkstra.setText(reporDis);
         System.out.println(dijkstraGo.getReporte());
         espFloyd.setText(reporFloyd);
+        resultado.setText(reporFinal());
     }//GEN-LAST:event_grafo5ActionPerformed
 
     /**
