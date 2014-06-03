@@ -21,6 +21,8 @@ public class ventana extends javax.swing.JFrame {
     control.HiloFloydWarshall floydGo;
     modelo.retornarGrafos grafoD = new retornarGrafos();
     modelo.retornarGrafos grafoD1 = new retornarGrafos();
+    public static String reporDis;
+    public static String reporFloyd;
     /**
      * Creates new form ventana
      */
@@ -144,10 +146,10 @@ public class ventana extends javax.swing.JFrame {
         floydGo = new HiloFloydWarshall(grafoD1.obtenerGrafo2());
         dijkstraGo.start();
         floydGo.start();
-        espDijkstra.setText(dijkstraGo.getReporte());
-        espFloyd.setText(floydGo.getReporte());
-        System.out.println("afadsf:   "  + floydGo.getReporte());
-        espDijkstra.setText("re troll");
+        espDijkstra.setText(reporDis);
+        System.out.println(dijkstraGo.getReporte());
+        espFloyd.setText(reporFloyd);
+        
     }//GEN-LAST:event_grafo1ActionPerformed
 
     /**
